@@ -13,7 +13,7 @@ const DeckContainer = props => {
     return (
         <Styled.DeckContainer>
             <ActiveCard card={props.cards[activeCard]} />
-            <Deck />
+            <Deck deckClicked={props.deckClicked} />
         </Styled.DeckContainer>
     );
 }

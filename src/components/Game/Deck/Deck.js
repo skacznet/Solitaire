@@ -3,7 +3,7 @@ import * as Styled from '../Card/styled';
 
 const Deck = props => {
     return (
-        <Styled.CardDown />
+        <Styled.CardDown onClick={props.deckClicked} />
     );
 }
 

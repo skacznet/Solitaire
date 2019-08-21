@@ -109,5 +109,6 @@ export const BottomContent = styled.div`
 
 export const Value = styled.div`
     font-size: 24px;
+    user-select: none;
     line-height: 1;
 `;
