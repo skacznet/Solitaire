@@ -5,7 +5,6 @@ import './assets/style/style.css';
 const App = props => {
   return (
     <>
-      <h1>Hahahaha</h1>
       <Game />
     </>
   );

@@ -23,18 +23,27 @@ const Card = props => {
         case 1: cardSymbol = <GiHearts />; break;
         case 2: cardSymbol = <GiClubs />; break;
         case 3: cardSymbol = <GiDiamonds />; break;
+        default: cardSymbol = '';
+    }
+
+    let content =   <Styled.Card color={props.color} zindex={props.zindex}>
+                        <Styled.TopContent>
+                            <Styled.Value>{cardValue}</Styled.Value>
+                            {cardSymbol}
+                        </Styled.TopContent>
+                        <Styled.BottomContent>
+                            {cardSymbol}
+                        </Styled.BottomContent>
+                    </Styled.Card>;
+
+    if(props.hidden === true) {
+        content = <Styled.CardDown zindex={props.zindex} />;
     }
     
     return (
-        <Styled.Card color={props.color}>
-            <Styled.TopContent>
-                <Styled.Value>{cardValue}</Styled.Value>
-                {cardSymbol}
-            </Styled.TopContent>
-            <Styled.BottomContent>
-                {cardSymbol}
-            </Styled.BottomContent>
-        </Styled.Card>
+        <>
+            { content }
+        </>
     );
 };
 
