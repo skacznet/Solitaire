@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Card from '../Card/Card';
 import Deck from './Deck';
 import ActiveCard from './ActiveCard';
 
@@ -12,7 +11,7 @@ const DeckContainer = props => {
 
     return (
         <Styled.DeckContainer>
-            <ActiveCard card={props.cards[activeCard]} />
+            <ActiveCard cardMouseDown={props.cardMouseDown} card={props.cards[activeCard]} />
             <Deck deckClicked={props.deckClicked} />
         </Styled.DeckContainer>
     );

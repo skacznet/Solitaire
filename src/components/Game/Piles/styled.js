@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Pile = styled.div`
     position: relative;
     width: 80px;
-    height: 110px;
 `;
 
 export const PilesContainer = styled.div`

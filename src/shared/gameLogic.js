@@ -7,7 +7,9 @@ export const generateCards = () => {
                 id: count,
                 value: i,
                 color: j%2,
-                type: j
+                type: j,
+                translateX: 0,
+                translateY: 0
             });
             count++;
         }
@@ -31,7 +33,7 @@ export const generatePilesCards = cards => {
     for(let i=0; i<7; i++) {
         for(let j=0; j<=i; j++) {
             let hidden = true;
-            if(j == i) {
+            if(j === i) {
                 hidden = false;
             }
             piles[i].push({

@@ -1,7 +1,25 @@
 import styled from 'styled-components';
 
-export const Card = styled.div`
+export const CardContainer = styled.div`
     position: relative;
+    margin-top: ${props => {
+        if(props.removeMargin) {
+            return '-110px';
+        } else if(props.zindex === 1) {
+            return 0;
+        } else {
+            return '-80px';
+        }
+    }};
+    z-index: ${props => {
+        return props.zindex;
+    }};
+    transform: ${props => {
+        return 'translate(' + props.translateX + 'px, ' + props.translateY + 'px)';
+    }};
+`;
+
+export const Card = styled.div`
     box-sizing: border-box;
     width: 80px;
     height: 110px;
@@ -12,32 +30,8 @@ export const Card = styled.div`
     border-radius: 4px;
     padding: 5px;
     box-shadow: rgba(0,0,0,0.15) 0 1px 3px 2px;
-    cursor: pointer;
+    pointer-events: none;
     font-weight: 700;
-    z-index: ${props => {
-        switch(props.zindex) {
-            case 1: return '1';
-            case 2: return '2';
-            case 3: return '3';
-            case 4: return '4';
-            case 5: return '5';
-            case 6: return '6';
-            case 7: return '7';
-            default: return '1';
-        }
-    }};
-    top: ${props => {
-        switch(props.zindex) {
-            case 1: return '0';
-            case 2: return '-90px';
-            case 3: return '-180px';
-            case 4: return '-270px';
-            case 5: return '-360px';
-            case 6: return '-450px';
-            case 7: return '-540px';
-            default: return '1';
-        }
-    }};
     color: ${props => {
         switch(props.color) {
             case 0: return '#000';
@@ -60,28 +54,7 @@ export const CardDown = styled.div`
     justify-content: center;
     align-items: center;
     z-index: ${props => {
-        switch(props.zindex) {
-            case 1: return '1';
-            case 2: return '2';
-            case 3: return '3';
-            case 4: return '4';
-            case 5: return '5';
-            case 6: return '6';
-            case 7: return '7';
-            default: return '1';
-        }
-    }};
-    top: ${props => {
-        switch(props.zindex) {
-            case 1: return '0';
-            case 2: return '-90px';
-            case 3: return '-180px';
-            case 4: return '-270px';
-            case 5: return '-360px';
-            case 6: return '-450px';
-            case 7: return '-540px';
-            default: return '1';
-        }
+        return props.zindex;
     }};
     ::after {
         content: '';
@@ -96,11 +69,13 @@ export const TopContent = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    pointer-events: none;
 `;
 
 export const BottomContent = styled.div`
     display: flex;
     justify-content: center;
+    pointer-events: none;
     svg {
         width: 3em;
         height: 3em;
@@ -111,4 +86,5 @@ export const Value = styled.div`
     font-size: 24px;
     user-select: none;
     line-height: 1;
+    pointer-events: none;
 `;

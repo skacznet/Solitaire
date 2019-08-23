@@ -4,14 +4,14 @@ import * as Styled from './styled';
 
 const Pile = props => {
 
-    const cards = props.cards.map((el, i) => {
-        return (
-            <Card key={el.id} value={el.value} color={el.color} type={el.type} hidden={el.hidden} zindex={i+1} />
-        )
-    });
+    const cards = props.cards.map((el, i) => (
+        <Card cardMouseDown={props.cardMouseDown} sourceType={'pile'} source={props.id} key={i} id={el.id} value={el.value} color={el.color} type={el.type} hidden={el.hidden} zindex={i+1} translateX={el.translateX} translateY={el.translateY} />
+    ));
 
     return (
-        <Styled.Pile>{ cards }</Styled.Pile>
+        <Styled.Pile id={'pile-' + props.id}>
+            { cards }
+        </Styled.Pile>
     );
 }
 
