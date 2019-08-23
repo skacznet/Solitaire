@@ -8,7 +8,7 @@ const Foundation = props => {
     const cards = props.cards.map((el, i) => {
         const marginCheck = (i === 0) ? false : true;
         return (
-            <Card removeMargin={marginCheck} id={el.id} key={i} color={el.color} type={el.type} value={el.value} hidden={el.hidden} zindex={i+1} translateX={el.translateX} translateY={el.translateY} source={props.id} sourceType={'foundation'} />
+            <Card cardMouseDown={props.cardMouseDown} removeMargin={marginCheck} id={el.id} key={i} color={el.color} type={el.type} value={el.value} hidden={el.hidden} zindex={i+1} translateX={el.translateX} translateY={el.translateY} source={props.id} sourceType={'foundation'} />
         )
     });
 

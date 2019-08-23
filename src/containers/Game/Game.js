@@ -46,8 +46,9 @@ const Game = props => {
                 i++;
             }
         } else if(cardData.sourceType === 'deck') {
-
             cardsToMove.push(document.getElementById('card-' + cardData.id));
+        } else if(cardData.sourceType === 'foundation') {
+            cardsToMove.push(document.getElementById('card-' + foundationsCards[cardData.source][foundationsCards[cardData.source].length - 1].id));
         }
         document.cardsToMoveElements = cardsToMove;
         document.xPos = event.pageX;
@@ -93,13 +94,24 @@ const Game = props => {
             pilesCardsCopy[destPile][pilesCardsCopy[destPile].length] = {...deckCards[activeDeckCard]};
             const activeIndex = activeDeckCard;
             deckCardsCopy.splice(activeIndex, 1);
-            console.log(deckCardsCopy);
             if(deckCards[activeIndex-1] !== undefined) {
                 setActiveDeckCard(activeIndex-1);
             } else {
                 setActiveDeckCard(0);
             }
             setDeckCards(deckCardsCopy);
+        } else if(sourceType === 'foundation') {
+            let foundationsCardsCopy = [[], [], [], []];
+            for (let i=0; i<4; i++) {
+                for(let j=0; j<foundationsCards[i].length; j++) {
+                    foundationsCardsCopy[i][j] = {
+                        ...foundationsCards[i][j]
+                    }
+                }
+            }
+            pilesCardsCopy[destPile][pilesCardsCopy[destPile].length] = {...foundationsCards[source][foundationsCards[source].length - 1]};
+            foundationsCardsCopy[source].pop();
+            setFoundationsCards(foundationsCardsCopy);
         }
 
         setPilesCards(pilesCardsCopy);
@@ -135,9 +147,6 @@ const Game = props => {
             if(pilesCardsCopy[source][pilesCardsCopy[source].length - 1] !== undefined) {
                 pilesCardsCopy[source][pilesCardsCopy[source].length - 1].hidden = false;
             }
-            // console.log(foundationsCardsCopy);
-            // console.log(pilesCardsCopy);
-            // console.log(card);
             setFoundationsCards(foundationsCardsCopy);
             setPilesCards(pilesCardsCopy);
         } else if(sourceType === 'deck') {
@@ -156,6 +165,11 @@ const Game = props => {
                 setActiveDeckCard(0);
             }
             setDeckCards(deckCardsCopy);
+            setFoundationsCards(foundationsCardsCopy);
+        } else if (sourceType === 'foundation') {
+            const card = {...foundationsCards[source][foundationsCards[source].length - 1]};
+            foundationsCardsCopy[f].push(card);
+            foundationsCardsCopy[source].pop();
             setFoundationsCards(foundationsCardsCopy);
         }
     }
@@ -225,7 +239,7 @@ const Game = props => {
     if(deckCards.length || pilesCards.length || foundationsCards.length) {
         content =   <div>
                         <Styled.TopContent>
-                            <Foundations cards={foundationsCards} />
+                            <Foundations cardMouseDown={onCardMouseDown} cards={foundationsCards} />
                             <DeckContainer cardMouseDown={onCardMouseDown} cards={deckCards} activeCard={activeDeckCard} deckClicked={onDeckClickHandler} />
                         </Styled.TopContent>
                         <Piles cardMouseDown={onCardMouseDown} cards={pilesCards} />
