@@ -7,12 +7,20 @@ import * as Styled from './styled';
 
 const DeckContainer = props => {
 
-    const activeCard = props.activeCard;
+    const activeCardIndex = props.activeCard;
+    let activeCard = null;
+    let deck = null;
+    if(props.cards.length > 0) {
+        activeCard = <ActiveCard cardMouseDown={props.cardMouseDown} card={props.cards[activeCardIndex]} />;
+    }
+    if(props.cards.length > 1) {
+        deck = <Deck deckClicked={props.deckClicked} />;
+    }
 
     return (
         <Styled.DeckContainer>
-            <ActiveCard cardMouseDown={props.cardMouseDown} card={props.cards[activeCard]} />
-            <Deck deckClicked={props.deckClicked} />
+            {activeCard}
+            {deck}
         </Styled.DeckContainer>
     );
 }
