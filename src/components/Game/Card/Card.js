@@ -28,7 +28,7 @@ const Card = props => {
 
     const cardData = {id: props.id, color: props.color, hidden: props.hidden, type: props.type, value: props.value, sourceType: props.sourceType, source: props.source, position: props.zindex - 1};
 
-    let content =   <Styled.CardContainer removeMargin={props.removeMargin} id={'card-' + props.id} translateX={props.translateX} translateY={props.translateY} zindex={props.zindex} onMouseDown={(event) => props.cardMouseDown(event, cardData)}>
+    let content =   <Styled.CardContainer removeMargin={props.removeMargin} className={'card'} id={'card-' + props.id} translateX={props.translateX} translateY={props.translateY} zindex={props.zindex} onTouchStart={(event) => props.cardMouseDown(event, cardData)} onMouseDown={(event) => props.cardMouseDown(event, cardData)}>
                         <Styled.Card color={props.color} zindex={props.zindex}>
                             <Styled.TopContent>
                                 <Styled.Value>{cardValue}</Styled.Value>

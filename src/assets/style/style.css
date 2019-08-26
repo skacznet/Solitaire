@@ -2,4 +2,7 @@ html, body {
     font-family: 'Lora', serif;
     background-color: #2a862a;
     color: #fff;
+    margin: 0;
+    padding: 0;
+    touch-action: none;
 }

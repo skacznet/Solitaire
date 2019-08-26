@@ -8,8 +8,8 @@ import * as Styled from './styled';
 const DeckContainer = props => {
 
     const activeCardIndex = props.activeCard;
-    let activeCard = null;
-    let deck = null;
+    let activeCard = <Styled.EmptyCard />;
+    let deck = <Styled.EmptyDeck />;
     if(props.cards.length > 0) {
         activeCard = <ActiveCard cardMouseDown={props.cardMouseDown} card={props.cards[activeCardIndex]} />;
     }
