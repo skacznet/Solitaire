@@ -46,10 +46,25 @@ export const generatePilesCards = cards => {
     return piles;
 }
 
-function shuffle(array) {
+const shuffle = array => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+}
+
+export const checkGameState = (foundationsCards) => {
+    let endGame = true;
+    for(let i=0; i<foundationsCards.length; i++) {
+        if(foundationsCards[i].length > 0) {
+            if (foundationsCards[i][foundationsCards[i].length - 1].value !== 13) {
+                endGame = false;
+            }
+        } else {
+            endGame = false;
+        }
+    }
+
+    return endGame;
 }

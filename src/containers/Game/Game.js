@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { generateCards, generateDeckCards, generatePilesCards } from '../../shared/gameLogic';
+import { generateCards, generateDeckCards, generatePilesCards, checkGameState } from '../../shared/gameLogic';
 import { pointInRectangle } from '../../shared/helpers';
 
 import Foundations from '../../components/Game/Foundations/Foundations';
@@ -33,35 +33,15 @@ const Game = props => {
         setPilesCards(generatePilesCards(cards));
         setDeckCards(generateDeckCards(cards));
         setFoundationsCards([[],[],[],[]]);
-
-        // const elements = document.getElementsByClassName("card");
-        // for (let i=0; i<elements.length; i++) {
-        //     elements[i].addEventListener('touchstart', onCardMouseDown, false);
-        //     elements[i].addEventListener('touchmove', onCardMouseDown, false);
-        // }
     }, cards);
 
     useEffect(() => {
-        checkGameState();
-    }, foundationsCards);
-
-    const checkGameState = () => {
-        let endGame = true;
-        for(let i=0; i<foundationsCards.length; i++) {
-            if(foundationsCards[i].length > 0) {
-                if (foundationsCards[i][foundationsCards[i].length - 1].value !== 13) {
-                    endGame = false;
-                }
-            } else {
-                endGame = false;
-            }
-        }
-        if(endGame) {
+        if(checkGameState(foundationsCards)) {
             setGameState({
                 win: true
-            })
+            });
         }
-    }
+    }, foundationsCards);
 
     const onDeckClickHandler = () => {
         if(deckCards[activeDeckCard + 1] !== undefined) {

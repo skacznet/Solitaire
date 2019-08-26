@@ -27,6 +27,7 @@ export const Button = styled.span`
     line-height: 0;
     border-radius: 4px;
     font-size: 14px;
+    user-select: none;
     :hover {
         background-color: #eee;
     }

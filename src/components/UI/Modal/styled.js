@@ -93,6 +93,7 @@ export const Button = styled.span`
     margin: 20px 0 0 0;
     border-radius: 4px;
     font-size: 18px;
+    user-select: none;
     :hover {
         background-color: #167cce;
     }
